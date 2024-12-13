@@ -1,0 +1,71 @@
+﻿@model airport_frontoffice.Models.Client
+@{
+    ViewData["Title"] = "Créer votre compte";
+}
+
+<div class="row justify-content-md-center">
+    <div class="col-4 col-md-4 col-lg-4 col-xl-4 col-xxl-4">
+        <div class="bg-white p-4 p-md-4 rounded shadow-sm">
+            <div class="row">
+                <div class="col-12">
+                    <div class="mb-3">
+                        <h3>Créer votre compte.</h3>
+                    </div>
+                </div>
+            </div>
+            <form asp-controller='Client' asp-action='SignIn'>
+                <div class="row gy-3 gy-md-4 overflow-hidden">
+                    <div>@ViewData["error"]</div>
+                    <div class="row">
+                        <div class="col">
+                            <label asp-for="Nom" for="Nom" class="form-label">Nom <span class="text-danger">*</span></label>
+                            <input asp-for="Nom" type="text" class="form-control" name="Nom" id="Nom">
+                            <span asp-validation-for="Nom" class="text-danger"></span>
+                        </div>
+                        <div class="col">
+                            <label asp-for="Prenom" for="Prenom" class="form-label">Prenom <span class="text-danger">*</span></label>
+                            <input asp-for="Prenom" type="text" class="form-control" name="Prenom" id="Prenom">
+                            <span asp-validation-for="Prenom" class="text-danger"></span>
+                        </div>
+                    </div>
+                    <div class="col-12">
+                        <label asp-for="Email" for="Email" class="form-label">Email <span class="text-danger">*</span></label>
+                        <input asp-for="Email" type="email" class="form-control" name="Email" id="Email">
+                        <span asp-validation-for="Email" class="text-danger"></span>
+                    </div>
+                    <div class="col-12">
+                        <label asp-for="Motdepasse" for="Motdepasse" class="form-label">Password <span class="text-danger">*</span></label>
+                        <input asp-for="Motdepasse" type="password" class="form-control" name="Motdepasse" id="Motdepasse">
+                        <span asp-validation-for="Motdepasse" class="text-danger"></span>
+                    </div>
+                    <div class="row">
+                        <div class="col">
+                            <label asp-for="Telephone" for="Telephone" class="form-label">Telephone <span class="text-danger">*</span></label>
+                            <input asp-for="Telephone" type="text" class="form-control" name="Telephone" id="Telephone">
+                            <span asp-validation-for="Telephone" class="text-danger"></span>
+                        </div>
+                        <div class="col">
+                            <label asp-for="Adresse" for="Adresse" class="form-label">Adresse <span class="text-danger">*</span></label>
+                            <input asp-for="Adresse" type="text" class="form-control" name="Adresse" id="Adresse">
+                            <span asp-validation-for="Adresse" class="text-danger"></span>
+                        </div>
+                    </div>
+                    <div class="col-12">
+                        <div class="d-grid">
+                            <button class="btn btn-lg btn-primary bg-primary" type="submit">Créer votre compte</button>
+                        </div>
+                    </div>
+                </div>
+            </form>
+            <div class="row">
+                <div class="col-12">
+                    <hr class="mt-5 mb-3 border-secondary-subtle">
+                    <div class="d-flex gap-2 gap-md-4 flex-column flex-md-row justify-content-md-end">
+                        <a href="/Client/Login" class="link-secondary text-decoration-none">Se connecter</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+

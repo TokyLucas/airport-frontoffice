@@ -1,5 +1,14 @@
+/* 
+    #D4EBF8: light
+    #1F509A: primary
+    #0A3981: primary-dark
+    #E38E49: secondary
+
+*/
+
 html {
-  font-size: 14px;
+    font-size: 14px;
+    height: 100% !important;
 }
 
 @media (min-width: 768px) {
@@ -19,6 +28,7 @@ html {
 
 body {
   margin-bottom: 60px;
+  height: 100% !important;
 }
 
 .form-floating > .form-control-plaintext::placeholder, .form-floating > .form-control::placeholder {
@@ -28,4 +38,18 @@ body {
 
 .form-floating > .form-control-plaintext:focus::placeholder, .form-floating > .form-control:focus::placeholder {
   text-align: start;
+}
+
+/* NEW */
+.container, main {
+    height: 100% !important;
+}
+
+.bg-primary {
+    background-color: #1F509A !important;
+}
+
+#search-block {
+    background-image: url('../img/main-bg.jpg');
+    background-repeat: no-repeat;
 }

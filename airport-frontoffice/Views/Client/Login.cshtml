@@ -1,0 +1,52 @@
+﻿@model airport_frontoffice.Models.ClientLogin
+@{
+    ViewData["Title"] = "Se connecter";
+}
+
+<div class="row justify-content-md-center">
+    <div class="col-4 col-md-4 col-lg-4 col-xl-4 col-xxl-4">
+        <div class="bg-white p-4 p-md-4 rounded shadow-sm">
+            <div class="row">
+                <div class="col-12">
+                    <div class="mb-3">
+                        <h3>Se connecter.</h3>
+                    </div>
+                </div>
+            </div>
+            <form asp-controller='Client' asp-action='Login'>
+                <div class="row gy-3 gy-md-4 overflow-hidden">
+                    <div>@ViewData["error"]</div>
+                    @if(ViewData["Message"] != null){
+                        <div class="alert alert-primary">@ViewData["Message"]</div>
+                    }
+                    <div class="col-12">
+                        <label asp-for="Email" for="Email" class="form-label">Email <span class="text-danger">*</span></label>
+                        <input asp-for="Email" type="email" class="form-control" name="Email" id="Email">
+                        <span asp-validation-for="Email" class="text-danger"></span>
+                    </div>
+                    <div class="col-12">
+                        <label asp-for="Motdepasse" for="Motdepasse" class="form-label">Motdepasse <span class="text-danger">*</span></label>
+                        <input asp-for="Motdepasse" type="password" class="form-control" name="Motdepasse" id="Motdepasse">
+                        <span asp-validation-for="Motdepasse" class="text-danger"></span>
+                    </div>
+                    <div class="col-12">
+                    </div>
+                    <div class="col-12">
+                        <div class="d-grid">
+                            <button class="btn btn-lg btn-primary bg-primary" type="submit">Se connecter</button>
+                        </div>
+                    </div>
+                </div>
+            </form>
+            <div class="row">
+                <div class="col-12">
+                    <hr class="mt-5 mb-3 border-secondary-subtle">
+                    <div class="d-flex gap-2 gap-md-4 flex-column flex-md-row justify-content-md-end">
+                        <a href="/Client/SignIn" class="link-secondary text-decoration-none">Creer votre compte</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
