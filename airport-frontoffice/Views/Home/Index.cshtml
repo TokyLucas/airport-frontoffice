@@ -2,7 +2,47 @@
     ViewData["Title"] = "Home Page";
 }
 
-<div class="text-center">
-    <h1 class="display-4">Welcome</h1>
-    <p>Learn about <a href="https://learn.microsoft.com/aspnet/core">building Web apps with ASP.NET Core</a>.</p>
+<div>
+    <div id="search-block" class="row justify-content-md-center">
+        <div class="col-8 my-2">
+            <form>
+                <input />
+                <input />
+                <input type="datetime-local" />
+            </form>
+        </div>
+    </div>
+
+    <div id="result-block" class="container bg-white border rounded p-3 mt-2">
+        <div>
+            <div class="row justify-content-between">
+                <div class="mb-1 col-6">
+                    <h3 class="m-0">
+                        Avion: XXX
+                    </h3>
+                    Depart: <span class="fw-bold"></span>
+                </div>
+                <div class="col-2">
+                    <a class="btn btn-primary bg-primary col-12">Reserver</a>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-3 mx-2 border rounded">
+                    <span class="fw-bold">Classe economique:</span> XX restants
+                    <br />
+                    <span class="fw-bold">Tarif:</span>
+                </div>
+                <div class="col-3 mx-2 border rounded">
+                    <span class="fw-bold">Classe economique:</span> XX restants
+                    <br />
+                    <span class="fw-bold">Tarif:</span>
+                </div>
+                <div class="col-3 mx-2 border rounded">
+                    <span class="fw-bold">Classe economique:</span> XX restants
+                    <br />
+                    <span class="fw-bold">Tarif:</span>
+                </div>
+            </div>
+        </div>
+    </div>
 </div>

@@ -1,9 +1,11 @@
 using System.Diagnostics;
+using airport_frontoffice.Helpers;
 using airport_frontoffice.Models;
 using Microsoft.AspNetCore.Mvc;
 
 namespace airport_frontoffice.Controllers
 {
+    //[Authorize]
     public class HomeController : Controller
     {
         private readonly ILogger<HomeController> _logger;
