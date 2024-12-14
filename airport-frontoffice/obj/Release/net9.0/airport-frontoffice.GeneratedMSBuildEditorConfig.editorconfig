@@ -24,12 +24,20 @@ build_property.EnableCodeStyleSeverity =
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQ2xpZW50XExvZ2luLmNzaHRtbA==
 build_metadata.AdditionalFiles.CssScope = 
 
+[F:/itu-m2/INF/WEB/.net/airport/airport-frontoffice/airport-frontoffice/Views/Client/SignIn.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQ2xpZW50XFNpZ25Jbi5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 
+
 [F:/itu-m2/INF/WEB/.net/airport/airport-frontoffice/airport-frontoffice/Views/Home/Index.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcSG9tZVxJbmRleC5jc2h0bWw=
 build_metadata.AdditionalFiles.CssScope = 
 
 [F:/itu-m2/INF/WEB/.net/airport/airport-frontoffice/airport-frontoffice/Views/Home/Privacy.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcSG9tZVxQcml2YWN5LmNzaHRtbA==
+build_metadata.AdditionalFiles.CssScope = 
+
+[F:/itu-m2/INF/WEB/.net/airport/airport-frontoffice/airport-frontoffice/Views/Home/_ResultatRechercheVol.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcSG9tZVxfUmVzdWx0YXRSZWNoZXJjaGVWb2wuY3NodG1s
 build_metadata.AdditionalFiles.CssScope = 
 
 [F:/itu-m2/INF/WEB/.net/airport/airport-frontoffice/airport-frontoffice/Views/Shared/Error.cshtml]

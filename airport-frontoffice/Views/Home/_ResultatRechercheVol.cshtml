@@ -1,0 +1,41 @@
+﻿@using airport_frontoffice.Models;
+@model List<Vol>
+
+@foreach (var item in Model)
+{
+    <div class="bg-white border my-2 p-3">
+        <div class="row justify-content-between">
+            <div class="row mb-1 col-6 justify-content-evenly">
+                <div class="col">
+                    <span><i class="bi bi-geo-alt-fill"></i> @item.AirportDepart - @item.AirportArrive</span>
+                </div>
+                <div class="col">
+                    <span><i class="bi bi-airplane-fill"></i> @item.AvionId</span>
+                </div>
+                <div class="col">
+                    <span><i class="bi bi-clock-fill"></i> @item.DateDepart</span>
+                </div>
+            </div>
+            <div class="col-2">
+                <a class="btn btn-primary bg-primary col-12">Réserver</a>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-3 mx-2 border rounded">
+                <span class="fw-bold">Classe économique:</span> XX restants
+                <br />
+                <span class="fw-bold">Tarif: @item.PrixDeBaseEconomique</span>
+            </div>
+            <div class="col-3 mx-2 border rounded">
+                <span class="fw-bold">Classe affaire:</span> XX restants
+                <br />
+                <span class="fw-bold">Tarif: @item.PrixDeBaseAffaire</span>
+            </div>
+            <div class="col-3 mx-2 border rounded">
+                <span class="fw-bold">Classe première:</span> XX restants
+                <br />
+                <span class="fw-bold">Tarif: @item.PrixDeBasePremiere</span>
+            </div>
+        </div>
+    </div>
+}
