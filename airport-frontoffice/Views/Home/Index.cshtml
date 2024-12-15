@@ -3,46 +3,129 @@
 }
 
 <div>
-    <div id="search-block" class="row justify-content-md-center">
+    <div id="search-block" class="row justify-content-center">
         <div class="col-8 my-2">
-            <form>
-                <input />
-                <input />
-                <input type="datetime-local" />
+            <form id="search-form">
+                <div>
+                    <div class="row col mb-1">
+                        <input class="col mx-1 form-control" id="Depart" placeholder="Départ" />
+                        <input class="col mx-1 form-control" id="Depart-value" hidden/>
+                        <div class="col-1 text-center text-white pt-1">
+                            <i class="bi bi-arrow-left-right"></i>
+                        </div>
+                        <input class="col mx-1 form-control" id="Destination" placeholder="Déstination" />
+                        <input class="col mx-1 form-control" id="Destination-value" hidden />
+                    </div>
+                    <div class="row col mb-1">
+                        <div class="input-group col mb-1 p-1">
+                            <label class="input-group-text" for="inputGroupSelect01">Date Aller</label>
+                            <input class="form-control" id="Date-aller" type="date" value="2024-12-13">
+                        </div>
+                        <div class="input-group col mb-1 p-1">
+                            <label class="input-group-text" for="inputGroupSelect01">Date Retour</label>
+                            <input class="form-control" id="Date-retour" type="date" value="2024-12-25">
+                        </div>
+                        <div class="form-check col mx-2 pt-2">
+                            <input class="form-check-input" type="checkbox" value="true" id="Aller-retour">
+                            <label class="form-check-label" for="flexCheckDefault">
+                                Aller - Retour
+                            </label>
+                        </div>
+                    </div>
+                    <div class="row col mb-1">
+                        <input type="submit" class="btn btn-primary bg-primary" id="searchButton" value="Rechercher">
+                    </div>
+                </div>
             </form>
         </div>
     </div>
 
-    <div id="result-block" class="container bg-white border rounded p-3 mt-2">
-        <div>
-            <div class="row justify-content-between">
-                <div class="mb-1 col-6">
-                    <h3 class="m-0">
-                        Avion: XXX
-                    </h3>
-                    Depart: <span class="fw-bold"></span>
-                </div>
-                <div class="col-2">
-                    <a class="btn btn-primary bg-primary col-12">Reserver</a>
-                </div>
-            </div>
-            <div class="row">
-                <div class="col-3 mx-2 border rounded">
-                    <span class="fw-bold">Classe economique:</span> XX restants
-                    <br />
-                    <span class="fw-bold">Tarif:</span>
-                </div>
-                <div class="col-3 mx-2 border rounded">
-                    <span class="fw-bold">Classe economique:</span> XX restants
-                    <br />
-                    <span class="fw-bold">Tarif:</span>
-                </div>
-                <div class="col-3 mx-2 border rounded">
-                    <span class="fw-bold">Classe economique:</span> XX restants
-                    <br />
-                    <span class="fw-bold">Tarif:</span>
-                </div>
-            </div>
-        </div>
+    <div id="result-block" class="container p-3 mt-2">
+        
     </div>
 </div>
+
+<script>
+    document.getElementById("search-form").addEventListener('submit',  function(event) {
+        event.preventDefault();
+        var depart = document.getElementById('Depart-value').value;
+        var arrive = document.getElementById('Destination-value').value;
+        var dateDepart = document.getElementById('Date-aller').value;
+        var dateRetour = document.getElementById('Date-retour').value;
+        var allerRetour = document.getElementById('Aller-retour').checked;
+        console.log(allerRetour);
+        var url = `/Home/RechercheVol?depart=${encodeURIComponent(depart)}&arrive=${encodeURIComponent(arrive)}`
+            +`&dateDepart=${encodeURIComponent(dateDepart)}&dateRetour=${encodeURIComponent(dateRetour)}`
+            +`&allerRetour=${encodeURIComponent(allerRetour)}`
+        ;
+        fetch(url)
+            .then(response => response.text())
+            .then(html => {
+                document.getElementById('result-block').innerHTML = html;
+            })
+            .catch(error => console.error('Error:', error));
+    });
+
+    $("#Depart").autocomplete({
+        source: function (request, response) {
+            // console.log(request.term);
+             $.ajax({
+                // Your API URL
+                url: "/api/Airport/Airports",
+                dataType: "json", // Assuming your API returns JSON
+                data: {
+                    // Pass user input as the 'ville' parameter
+                    ville: request.term,
+                },
+                success: function (data) {
+                    // response( data.map( item => item.Ville ) );
+                    response(data.map(function (item) {
+                        return {
+                            label: item.Ville,
+                            value: item.AirportId
+                        };
+                    }));
+                    // Map the response to a format usable by autocomplete
+                    // response(data);
+                },
+                error: function (xhr, status, error) {
+                    console.error("Error fetching autocomplete data: ", error);
+                    response([]); // Return an empty array on error
+                }
+            });
+        },
+        select: function (event, ui) {
+            $("#Depart").val(ui.item.label);
+            $("#Depart-value").val(ui.item.value);
+            event.preventDefault();
+        },
+    });
+    $("#Destination").autocomplete({
+        source: function (request, response) {
+             $.ajax({
+                url: "/api/Airport/Airports",
+                dataType: "json",
+                data: {
+                    ville: request.term,
+                },
+                success: function (data) {
+                    response(data.map(function (item) {
+                        return {
+                            label: item.Ville,
+                            value: item.AirportId
+                        };
+                    }));
+                },
+                error: function (xhr, status, error) {
+                    console.error("Error fetching autocomplete data: ", error);
+                    response([]);
+                }
+            });
+        },
+        select: function (event, ui) {
+            $("#Destination").val(ui.item.label);
+            $("#Destination-value").val(ui.item.value);
+            event.preventDefault();
+        },
+    });
+</script>

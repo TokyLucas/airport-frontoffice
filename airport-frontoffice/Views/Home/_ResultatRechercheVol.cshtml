@@ -1,0 +1,119 @@
+﻿@using airport_frontoffice.ViewModels;
+@model RechercheVol
+
+<div class="row">
+    @if (Model.Allers != null)
+    {
+        @if (Model.Allers.Capacity == 0)
+        {
+            <div class="col">
+                <h2>Aller</h2>
+                <p>Aucun vol</p>
+            </div>
+        }
+        else
+        {
+            <div class="col">
+                <h2>Aller</h2>
+                @foreach (var item in Model.Allers)
+                {
+                    <div class="bg-white border my-2 p-3">
+                        <div class="row justify-content-between d-flex mb-2">
+                            <div class="row mb-1 col-md-6 d-flex flex-fill">
+                                <div class="col fw-bold">
+                                    <i class="bi bi-geo-alt-fill"></i>
+                                    @item.AirportDepartDetails.Ville <span class="text-muted">[@item.AirportDepartDetails.IATA]</span>
+                                    -
+                                    @item.AirportArriveDetails.Ville <span class="text-muted">[@item.AirportArriveDetails.IATA]</span>
+                                </div>
+                                <div class="col">
+                                    <span><i class="bi bi-airplane-fill"></i> @item.Avion.Marque @item.Avion.Modele - @item.Avion.Immatriculation</span>
+                                </div>
+                                <div class="col">
+                                    <span><i class="bi bi-clock-fill"></i> @item.DateDepart</span>
+                                </div>
+                            </div>
+                            <div class="col-md-2">
+                                <a class="btn btn-primary bg-primary col-12" href="Reservation/Reserver/@item.VolId">Réserver</a>
+                            </div>
+                        </div>
+                        <div class="row overflow-auto">
+                            <div class="col m-2 border rounded">
+                                <span class="fw-bold">Classe économique:</span> XX restants
+                                <br />
+                                <span class="fw-bold">Tarif:   @Html.DisplayFor(m => item.PrixDeBaseEconomique, "CurrencyFormatter")</span>
+                            </div>
+                            <div class="col m-2 border rounded">
+                                <span class="fw-bold">Classe affaire:</span> XX restants
+                                <br />
+                                <span class="fw-bold">Tarif:   @Html.DisplayFor(m => item.PrixDeBaseAffaire, "CurrencyFormatter")</span>
+                            </div>
+                            <div class="col m-2 border rounded">
+                                <span class="fw-bold">Classe première:</span> XX restants
+                                <br />
+                                <span class="fw-bold">Tarif:   @Html.DisplayFor(m => item.PrixDeBasePremiere, "CurrencyFormatter")</span>
+                            </div>
+                        </div>
+                    </div>
+                }
+            </div>
+        }
+    }
+    @if (Model.Retours != null)
+    {
+        @if (Model.Retours.Capacity == 0)
+        {
+            <div class="col-md-6">
+                <h2>Retour</h2>
+                <p>Aucun vol</p>
+            </div>
+        }
+        else
+        {
+            <div class="col-md-6">
+                <h2>Retour</h2>
+                @foreach (var item in Model.Retours)
+                {
+                    <div class="bg-white border my-2 p-3">
+                        <div class="row justify-content-between d-flex mb-2">
+                            <div class="row mb-1 col-md-6 d-flex flex-fill">
+                                <div class="col fw-bold">
+                                    <i class="bi bi-geo-alt-fill"></i>
+                                    @item.AirportDepartDetails.Ville <span class="text-muted">[@item.AirportDepartDetails.IATA]</span>
+                                    -
+                                    @item.AirportArriveDetails.Ville <span class="text-muted">[@item.AirportArriveDetails.IATA]</span>
+                                </div>
+                                <div class="col">
+                                    <span><i class="bi bi-airplane-fill"></i> @item.Avion.Marque @item.Avion.Modele - @item.Avion.Immatriculation</span>
+                                </div>
+                                <div class="col">
+                                    <span><i class="bi bi-clock-fill"></i> @item.DateDepart</span>
+                                </div>
+                            </div>
+                            <div class="col-md-2">
+                                <a class="btn btn-primary bg-primary col-12" href="Reservation/Reserver/@item.VolId">Réserver</a>
+                            </div>
+                        </div>
+                        <div class="row overflow-auto">
+                            <div class="col m-2 border rounded">
+                                <span class="fw-bold">Classe économique:</span> XX restants
+                                <br />
+                                <span class="fw-bold">Tarif:   @Html.DisplayFor(m => item.PrixDeBaseEconomique, "CurrencyFormatter")</span>
+                            </div>
+                            <div class="col m-2 border rounded">
+                                <span class="fw-bold">Classe affaire:</span> XX restants
+                                <br />
+                                <span class="fw-bold">Tarif:   @Html.DisplayFor(m => item.PrixDeBaseAffaire, "CurrencyFormatter")</span>
+                            </div>
+                            <div class="col m-2 border rounded">
+                                <span class="fw-bold">Classe première:</span> XX restants
+                                <br />
+                                <span class="fw-bold">Tarif:   @Html.DisplayFor(m => item.PrixDeBasePremiere, "CurrencyFormatter")</span>
+                            </div>
+                        </div>
+                    </div>
+                }
+            </div>
+        }
+    }
+</div>

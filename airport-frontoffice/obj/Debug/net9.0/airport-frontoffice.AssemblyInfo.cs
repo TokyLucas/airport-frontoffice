@@ -14,7 +14,7 @@ using System.Reflection;
 [assembly: System.Reflection.AssemblyCompanyAttribute("airport-frontoffice")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Debug")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+26c83904f5de7157e23bf4ee46fbc64253bbb13f")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+ffca889482c7efe6259c5e68a5dc6c7a84fd5232")]
 [assembly: System.Reflection.AssemblyProductAttribute("airport-frontoffice")]
 [assembly: System.Reflection.AssemblyTitleAttribute("airport-frontoffice")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]

@@ -41,6 +41,10 @@ body {
 }
 
 /* NEW */
+.ui-helper-hidden-accessible {
+    display: none;
+}
+
 .container, main {
     height: 100% !important;
 }

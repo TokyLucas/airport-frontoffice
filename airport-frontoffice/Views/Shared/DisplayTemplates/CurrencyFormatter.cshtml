@@ -1,0 +1,19 @@
+﻿@model decimal
+
+@using System.Globalization
+
+@{
+    var ariaryFormat = new NumberFormatInfo
+    {
+        CurrencySymbol = "Ar",
+        CurrencyDecimalDigits = 2,
+        CurrencyDecimalSeparator = ".",
+        CurrencyGroupSeparator = ",",
+        CurrencyPositivePattern = 3,
+        CurrencyNegativePattern = 8,
+    };
+
+    string formattedValue = Model.ToString("C", ariaryFormat);
+}
+
+<span>@formattedValue</span>
