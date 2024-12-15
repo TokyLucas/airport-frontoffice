@@ -21,7 +21,7 @@ namespace airport_frontoffice.Controllers
         [Route("api/[controller]/Vols")]
         public string Find(string depart, string arrive, string date)
         {
-            List<Vol> vols = new List<Vol> ();
+            List<VolDetails> vols = new List<VolDetails>();
             try
             {
                 vols = _volService.FindVol(depart, arrive, date);
