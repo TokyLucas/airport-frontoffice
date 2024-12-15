@@ -19,6 +19,8 @@ builder.Services.AddSingleton(provider =>
 builder.Services.AddScoped<ClientService>();
 builder.Services.AddScoped<AirportService>();
 builder.Services.AddScoped<VolService>();
+builder.Services.AddScoped<ReservationService>();
+builder.Services.AddScoped<PaiementService>();
 
 // Session
 builder.Services.AddDistributedMemoryCache();
