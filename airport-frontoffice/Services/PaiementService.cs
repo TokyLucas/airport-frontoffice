@@ -28,8 +28,8 @@ namespace airport_frontoffice.Services
                             "INSERT INTO Paiement (reservation_id, numero_carte_bancaire) VALUES " +
                             "(@reservation_id, @numero_carte_bancaire)  ";
 
-                        command.Parameters.Add("@reservation_id", SqlDbType.VarChar, 25).Value = paiement.ReservationId;
-                        command.Parameters.Add("@numero_carte_bancaire", SqlDbType.VarChar, 25).Value = paiement.NumeroCarteBancaire;
+                        command.Parameters.Add("@reservation_id", SqlDbType.Int).Value = paiement.ReservationId;
+                        command.Parameters.Add("@numero_carte_bancaire", SqlDbType.VarChar, 12).Value = paiement.NumeroCarteBancaire;
                         command.Prepare();
 
                         result = command.ExecuteNonQuery();

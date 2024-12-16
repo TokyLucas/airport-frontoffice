@@ -40,6 +40,10 @@ build_metadata.AdditionalFiles.CssScope =
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcSG9tZVxfUmVzdWx0YXRSZWNoZXJjaGVWb2wuY3NodG1s
 build_metadata.AdditionalFiles.CssScope = 
 
+[F:/itu-m2/INF/WEB/.net/airport/airport-frontoffice/airport-frontoffice/Views/Reservation/Billet.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcUmVzZXJ2YXRpb25cQmlsbGV0LmNzaHRtbA==
+build_metadata.AdditionalFiles.CssScope = 
+
 [F:/itu-m2/INF/WEB/.net/airport/airport-frontoffice/airport-frontoffice/Views/Reservation/Liste.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcUmVzZXJ2YXRpb25cTGlzdGUuY3NodG1s
 build_metadata.AdditionalFiles.CssScope = 

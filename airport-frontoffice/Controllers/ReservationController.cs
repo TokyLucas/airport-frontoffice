@@ -126,9 +126,12 @@ namespace airport_frontoffice.Controllers
                     volDetails = _volService.FindById(d.VolId.ToString());
 
                 details.Paiement.ReservationId = details.ReservationId;
-                int result = _paiementService.Payer(details.Paiement);
-                if(result > 0)
-                    return Redirect(Url.Action("Liste", "Reservation") + "?message=PaiementEffectuee");
+                //if (TryValidateModel(details.Paiement.NumeroCarteBancaire, nameof(details.Paiement.NumeroCarteBancaire)))
+                //{
+                    int result = _paiementService.Payer(details.Paiement);
+                    if (result > 0)
+                        return Redirect(Url.Action("Liste", "Reservation") + "?message=PaiementEffectuee");
+                //}
             }
             catch (Exception ex)
             {
@@ -140,6 +143,31 @@ namespace airport_frontoffice.Controllers
                 details.Reservations = reservations;
             }
             return View("Paiement", details);
+        }
+
+        public IActionResult Billet(int ID)
+        {
+            PaiementDetails details = new PaiementDetails();
+            List<Models.ReservationDetails> reservations = new List<Models.ReservationDetails>();
+            List<VolDetails> volDetails = new List<VolDetails>();
+            try
+            {
+                reservations = _reservationService.FindById(ID.ToString());
+                foreach (ReservationDetails d in reservations)
+                    volDetails = _volService.FindById(d.VolId.ToString());
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+            finally
+            {
+                details.ReservationId = ID;
+                details.Vol = volDetails;
+                details.Reservations = reservations;
+                details.Paiement = new Paiement();
+            }
+            return View(details);
         }
     }
 }

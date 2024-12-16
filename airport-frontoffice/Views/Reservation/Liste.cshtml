@@ -22,7 +22,7 @@
                     @if (item.Payee == -1){
                         <a class="btn btn-primary bg-primary col-12" href="/Reservation/Paiement/@item.ReservationId">Payer</a>
                     } else {
-                        <a class="btn btn-success col-12">Payé</a>
+                        <a class="btn btn-success col-12" href="/Reservation/Billet/@item.ReservationId">Billet</a>
                     }
                 </div>
             </div>

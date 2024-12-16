@@ -1,0 +1,90 @@
+﻿@using airport_frontoffice.ViewModels;
+@model PaiementDetails
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
+
+<div class="container p-2" id="billet">
+    <h2>Billet</h2>
+    @foreach (var item in Model.Vol)
+    {
+        <script type="text/javascript">
+            function convertHTMLtoPDF() {
+                const { jsPDF } = window.jspdf;
+
+                let doc = new jsPDF('l', 'mm', [1500, 1400]);
+                let pdfjs = document.querySelector('#billet');
+                window.html2canvas = html2canvas;
+                doc.html(pdfjs, {
+                    callback: function(doc) {
+                        doc.save(`@item.Avion.Marque @item.Avion.Modele - @item.Avion.Immatriculation - @item.VolId - Billet.pdf`);
+                    },
+                    x: 12,
+                    y: 12
+                });
+            }
+        </script>
+        <div class="bg-white border my-2 p-3">
+            <div class="row justify-content-between d-flex mb-2">
+                <div class="row mb-1 col-md-6 d-flex flex-fill">
+                    <div class="col fw-bold">
+                        <i class="bi bi-geo-alt-fill"></i>
+                        @item.AirportDepartDetails.Ville <span class="text-muted">[@item.AirportDepartDetails.IATA]</span>
+                        -
+                        @item.AirportArriveDetails.Ville <span class="text-muted">[@item.AirportArriveDetails.IATA]</span>
+                    </div>
+                    <div class="col">
+                        <span><i class="bi bi-airplane-fill"></i> @item.Avion.Marque @item.Avion.Modele - @item.Avion.Immatriculation</span>
+                    </div>
+                    <div class="col">
+                        <span><i class="bi bi-clock-fill"></i> @item.DateDepart</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    }
+        <div class="bg-white border my-2 p-3">
+
+            <div class="row col mb-1">
+                <table class="table">
+                    <thead>
+                        <tr class="bg-primary">
+                            <th></th>
+                            <th>Classe economique</th>
+                            <th>Classe affaire</th>
+                            <th>Premiere classe</th>
+                        </tr>
+                    </thead>
+                @foreach (var item in Model.Reservations)
+                {
+                    <tr>
+                        <td>@item.Personne</td>
+                        <td>
+                            @item.NbPlaceEconomique
+                            <br />
+                            Total: @Html.DisplayFor(m => item.TotalEconomique, "CurrencyFormatter")
+                        </td>
+                        <td>
+                            @item.NbPlaceAffaire
+                            <br />
+                            Total: @Html.DisplayFor(m => item.TotalAffaire, "CurrencyFormatter")
+                        </td>
+                        <td>
+                            @item.NbPlacePremiere
+                            <br />
+                            Total: @Html.DisplayFor(m => item.TotalAffaire, "CurrencyFormatter")
+                        </td>
+                    </tr>
+                }
+                </table>
+            </div>
+
+        <div class="row mb-1">
+            <div class="mx-1 mb-3">
+                <div class="mx-1 mb-3">
+                    <button class="btn btn-primary bg-primary col-12" id="download-billet" onclick="convertHTMLtoPDF()">Payer</button>
+                </div>
+            </div>
+        </div>
+        </div>
+</div>
