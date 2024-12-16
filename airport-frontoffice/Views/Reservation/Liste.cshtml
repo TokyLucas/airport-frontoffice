@@ -1,0 +1,31 @@
+﻿@model List<ListeReservation>
+<div class="container my-2">
+    <h2>Réservation</h2>
+    @if (ViewData["message"] == "PaiementEffectuee"){
+        <div class="alert alert success">
+            PaiementEffectuee
+        </div>
+    }
+    @foreach (var item in Model)
+    {
+        <div class="bg-white border my-2 p-3">
+            <div class="row justify-content-between d-flex mb-2">
+                <div class="row mb-1 col-md-6 d-flex flex-fill">
+                    <div class="col">
+                        <span><i class="bi bi-airplane-fill"></i> @item.Depart - @item.Arrive</span>
+                    </div>
+                    <div class="col">
+                        <span><i class="bi bi-airplane-fill"></i> @item.VolId-@item.ClientId</span>
+                    </div>
+                </div>
+                <div class="col-md-2">
+                    @if (item.Payee == -1){
+                        <a class="btn btn-primary bg-primary col-12" href="/Reservation/Paiement/@item.ReservationId">Payer</a>
+                    } else {
+                        <a class="btn btn-success col-12" href="/Reservation/Billet/@item.ReservationId">Billet</a>
+                    }
+                </div>
+            </div>
+        </div>
+    }
+</div>

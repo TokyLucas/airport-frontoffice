@@ -1,0 +1,80 @@
+﻿@using airport_frontoffice.ViewModels;
+@model PaiementDetails
+<div class="container p-2">
+    <h2>Paiement</h2>
+    @foreach (var item in Model.Vol)
+    {
+        <div class="bg-white border my-2 p-3">
+            <div class="row justify-content-between d-flex mb-2">
+                <div class="row mb-1 col-md-6 d-flex flex-fill">
+                    <div class="col fw-bold">
+                        <i class="bi bi-geo-alt-fill"></i>
+                        @item.AirportDepartDetails.Ville <span class="text-muted">[@item.AirportDepartDetails.IATA]</span>
+                        -
+                        @item.AirportArriveDetails.Ville <span class="text-muted">[@item.AirportArriveDetails.IATA]</span>
+                    </div>
+                    <div class="col">
+                        <span><i class="bi bi-airplane-fill"></i> @item.Avion.Marque @item.Avion.Modele - @item.Avion.Immatriculation</span>
+                    </div>
+                    <div class="col">
+                        <span><i class="bi bi-clock-fill"></i> @item.DateDepart</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    }
+        <div class="bg-white border my-2 p-3">
+
+            <div class="row col mb-1">
+                <table class="table">
+                    <thead>
+                        <tr class="bg-primary">
+                            <th></th>
+                            <th>Classe economique</th>
+                            <th>Classe affaire</th>
+                            <th>Premiere classe</th>
+                        </tr>
+                    </thead>
+                @foreach (var item in Model.Reservations)
+                {
+                    <tr>
+                        <td>@item.Personne</td>
+                        <td>
+                            @item.NbPlaceEconomique
+                            <br />
+                            Total: @Html.DisplayFor(m => item.TotalEconomique, "CurrencyFormatter")
+                        </td>
+                        <td>
+                            @item.NbPlaceAffaire
+                            <br />
+                            Total: @Html.DisplayFor(m => item.TotalAffaire, "CurrencyFormatter")
+                        </td>
+                        <td>
+                            @item.NbPlacePremiere
+                            <br />
+                            Total: @Html.DisplayFor(m => item.TotalAffaire, "CurrencyFormatter")
+                        </td>
+                    </tr>
+                }
+                </table>
+            </div>
+
+            <div class="row mb-1">
+                <div class="mx-1 mb-3">
+                <form asp-controller='Reservation' asp-action='SubmitPaiement'>
+                        @Html.HiddenFor(m => Model.ReservationId, Model.ReservationId)
+                        <div class="col mx-1 mb-3">
+                            <label for="exampleFormControlInput1" class="form-label">Carte bancaire</label>
+                            <input asp-for="@Model.Paiement.NumeroCarteBancaire" class=" form-control" id="carteBancaire" value="0" />
+                            <span asp-validation-for="@Model.Paiement.NumeroCarteBancaire" class="text-danger"></span>
+                        </div>
+                        <div class="row mb-1">
+                            <div class="mx-1 mb-3">
+                                <button class="btn btn-primary bg-primary col-12" type="submit">Payer</button>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+</div>

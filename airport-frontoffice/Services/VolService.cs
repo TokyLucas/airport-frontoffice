@@ -25,7 +25,7 @@ namespace airport_frontoffice.Services
                 {
                     command.CommandText =
                         "SELECT * FROM VolDetails WHERE vol_id = @id";
-                    command.Parameters.Add("@vol_id", SqlDbType.Int).Value = Int64.Parse(id);
+                    command.Parameters.Add("@id", SqlDbType.Int).Value = Int64.Parse(id);
                     command.Prepare();
 
                     using (var reader = command.ExecuteReader())

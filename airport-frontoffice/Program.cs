@@ -1,3 +1,4 @@
+using airport_frontoffice.Middlewares;
 using airport_frontoffice.Services;
 using Microsoft.AspNetCore.Authentication.Cookies;
 using Microsoft.Extensions.DependencyInjection.Extensions;
@@ -19,12 +20,16 @@ builder.Services.AddSingleton(provider =>
 builder.Services.AddScoped<ClientService>();
 builder.Services.AddScoped<AirportService>();
 builder.Services.AddScoped<VolService>();
+builder.Services.AddScoped<ReservationService>();
+builder.Services.AddScoped<PaiementService>();
 
 // Session
 builder.Services.AddDistributedMemoryCache();
 builder.Services.AddSession(options =>
 {
-    options.IdleTimeout = TimeSpan.FromMinutes(10);
+    options.IdleTimeout = TimeSpan.FromMinutes(10); 
+    options.Cookie.HttpOnly = true;
+    options.Cookie.IsEssential = true;
 });
 builder.Services.TryAddSingleton<IHttpContextAccessor, HttpContextAccessor>();
 
@@ -56,6 +61,8 @@ app.UseSession();
 
 // New Auth config
 //app.UseAuthentication();
+app.UseMiddleware<SessionMiddleware>();
+
 
 app.UseAuthorization();
 
