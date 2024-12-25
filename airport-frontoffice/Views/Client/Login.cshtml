@@ -3,9 +3,9 @@
     ViewData["Title"] = "Se connecter";
 }
 
-<div class="row justify-content-md-center">
-    <div class="col-4 col-md-4 col-lg-4 col-xl-4 col-xxl-4">
-        <div class="bg-white p-4 p-md-4 rounded shadow-sm">
+<div class="my-5 row justify-content-md-center">
+    <div class="col-md-4">
+        <div class="bg-white p-4 p-md-4 border rounded shadow-sm">
             <div class="row">
                 <div class="col-12">
                     <div class="mb-3">
@@ -21,7 +21,7 @@
                     }
                     <div class="col-12">
                         <label asp-for="Email" for="Email" class="form-label">Email <span class="text-danger">*</span></label>
-                        <input asp-for="Email" type="email" class="form-control" name="Email" id="Email">
+                        <input asp-for="Email" class="form-control" name="Email" id="Email">
                         <span asp-validation-for="Email" class="text-danger"></span>
                     </div>
                     <div class="col-12">

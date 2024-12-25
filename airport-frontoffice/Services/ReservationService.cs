@@ -103,8 +103,8 @@ namespace airport_frontoffice.Services
                     using (var cmdReservation = new SqlCommand(null, connection, transaction))
                     {
                         cmdReservation.CommandText =
-                            "INSERT INTO Reservation (client_id, vol_id) VALUES " +
-                            "(@client_id, @vol_id); " +
+                            "INSERT INTO Reservation (client_id, vol_id, date_reservation) VALUES " +
+                            "(@client_id, @vol_id, CURRENT_TIMESTAMP); " +
                             "SELECT SCOPE_IDENTITY();";
 
                         cmdReservation.Parameters.Add("@client_id", SqlDbType.Int).Value = reservation.ClientId;
@@ -120,11 +120,14 @@ namespace airport_frontoffice.Services
                     {
                         foreach(PlaceReservation placeReservation in placeReservations)
                         {
-                            cmdPlace.CommandText =
-                                "INSERT INTO PlaceReservation (reservation_id, tarifPersonne_id, nb_place_economique, nb_place_affaire, nb_place_premiere) VALUES " +
-                                "(@reservation_id, @tarifPersonne_id, @nb_place_economique, @nb_place_affaire, @nb_place_premiere)";
+                            //cmdPlace.CommandText =
+                            //    "INSERT INTO PlaceReservation (reservation_id, tarifPersonne_id, nb_place_economique, nb_place_affaire, nb_place_premiere) VALUES " +
+                            //    "(@reservation_id, @tarifPersonne_id, @nb_place_economique, @nb_place_affaire, @nb_place_premiere)";
+                            cmdPlace.CommandText = "InsertPlaceReservation";
+                            cmdPlace.CommandType = CommandType.StoredProcedure;
 
                             cmdPlace.Parameters.Clear();
+                            cmdPlace.Parameters.Add("@vol_id", SqlDbType.Int).Value = reservation.VolId;
                             cmdPlace.Parameters.Add("@reservation_id", SqlDbType.Int).Value = reservationId;
                             cmdPlace.Parameters.Add("@tarifPersonne_id", SqlDbType.Int).Value = placeReservation.TarifPersonneId;
                             cmdPlace.Parameters.Add("@nb_place_economique", SqlDbType.Int).Value = placeReservation.NbPlaceEconomique;
@@ -133,6 +136,7 @@ namespace airport_frontoffice.Services
                             cmdPlace.Prepare();
 
                             cmdPlace.ExecuteNonQuery();
+                            result++;
                         }
                     }
 
@@ -149,6 +153,17 @@ namespace airport_frontoffice.Services
             }
 
             return result;
+        }
+
+        public static bool ListePlaceIsValid(List<PlaceReservation> placeReservations)
+        {
+            int counter = 0;
+            foreach (PlaceReservation placeReservation in placeReservations)
+            {
+                if (placeReservation.NbPlaceEconomique == 0 && placeReservation.NbPlaceAffaire == 0 && placeReservation.NbPlacePremiere == 0)
+                    counter++;
+            }
+            return !(counter == placeReservations.Count);
         }
     }
 }

@@ -3,9 +3,9 @@
     ViewData["Title"] = "Créer votre compte";
 }
 
-<div class="row justify-content-md-center">
-    <div class="col-4 col-md-4 col-lg-4 col-xl-4 col-xxl-4">
-        <div class="bg-white p-4 p-md-4 rounded shadow-sm">
+<div class="my-5 row justify-content-md-center">
+    <div class="col-md-4">
+        <div class="bg-white p-4 p-md-4 border rounded shadow-sm">
             <div class="row">
                 <div class="col-12">
                     <div class="mb-3">
@@ -16,7 +16,7 @@
             <form asp-controller='Client' asp-action='SignIn'>
                 <div class="row gy-3 gy-md-4 overflow-hidden">
                     <div>@ViewData["error"]</div>
-                    <div class="row">
+                    <div class="row justify-content-between">
                         <div class="col">
                             <label asp-for="Nom" for="Nom" class="form-label">Nom <span class="text-danger">*</span></label>
                             <input asp-for="Nom" type="text" class="form-control" name="Nom" id="Nom">

@@ -62,13 +62,21 @@ namespace airport_frontoffice.Controllers
                 places.Add(form.PlacesEnfant);
                 places.Add(form.PlacesBebe);
 
-                int result = _reservationService.Reserver(reservation, places);
-                ViewData["Message"] = "Reservé " + result;
+                if (ReservationService.ListePlaceIsValid(places))
+                {
+                    int result = _reservationService.Reserver(reservation, places);
+                    ViewData["Message"] = "Reservé " + result;
+                }
+                else
+                {
+                    ViewData["Message"] = "Doit avoir au moins une place valide";
+                }
+                
             }
             catch (Exception ex)
             {
-                throw ex;
-                //ViewData["Message"] = ex.Message;
+                ViewData["Message"] = ex.Message;
+                //throw ex;
             }
             return View("Reserver", form);
         }
@@ -92,7 +100,7 @@ namespace airport_frontoffice.Controllers
 
         public IActionResult Paiement(int ID)
         {
-            PaiementDetails details = new PaiementDetails();
+            //PaiementDetails details = new PaiementDetails();
             List<Models.ReservationDetails> reservations = new List<Models.ReservationDetails>();
             List<VolDetails> volDetails = new List<VolDetails>();
             try
@@ -107,31 +115,35 @@ namespace airport_frontoffice.Controllers
             }
             finally
             {
-                details.ReservationId = ID;
-                details.Vol = volDetails;
-                details.Reservations = reservations;
-                details.Paiement = new Paiement();
+                //details.ReservationId = ID;
+                //details.Vol = volDetails;
+                //details.Reservations = reservations;
+                //details.Paiement = new Paiement();
+                ViewData["ReservationId"] = ID;
+                ViewData["Vol"] = volDetails;
+                ViewData["Reservations"] = reservations;
             }
-            return View(details);
+            return View(new Paiement());
         }
         [HttpPost]
-        public IActionResult SubmitPaiement(PaiementDetails details)
+        public IActionResult SubmitPaiement(int ID, Paiement paiement)
         {
             List<Models.ReservationDetails> reservations = new List<Models.ReservationDetails>();
             List<VolDetails> volDetails = new List<VolDetails>();
             try
             {
-                reservations = _reservationService.FindById(details.ReservationId.ToString());
-                foreach(ReservationDetails d in reservations)
+                reservations = _reservationService.FindById(ID.ToString());
+                foreach (ReservationDetails d in reservations)
                     volDetails = _volService.FindById(d.VolId.ToString());
 
-                details.Paiement.ReservationId = details.ReservationId;
-                //if (TryValidateModel(details.Paiement.NumeroCarteBancaire, nameof(details.Paiement.NumeroCarteBancaire)))
-                //{
-                    int result = _paiementService.Payer(details.Paiement);
+                //details.Paiement.ReservationId = details.ReservationId;
+                if (ModelState.IsValid)
+                {
+                    paiement.ReservationId = (int)ID;
+                    int result = _paiementService.Payer(paiement);
                     if (result > 0)
                         return Redirect(Url.Action("Liste", "Reservation") + "?message=PaiementEffectuee");
-                //}
+                }
             }
             catch (Exception ex)
             {
@@ -139,10 +151,11 @@ namespace airport_frontoffice.Controllers
             }
             finally
             {
-                details.Vol = volDetails;
-                details.Reservations = reservations;
+                ViewData["ReservationId"] = ID;
+                ViewData["Vol"] = volDetails;
+                ViewData["Reservations"] = reservations;
             }
-            return View("Paiement", details);
+            return View("Paiement", paiement);
         }
 
         public IActionResult Billet(int ID)

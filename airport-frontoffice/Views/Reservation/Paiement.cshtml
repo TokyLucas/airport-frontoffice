@@ -1,8 +1,8 @@
-﻿@using airport_frontoffice.ViewModels;
-@model PaiementDetails
+﻿@using airport_frontoffice.Models;
+@model Paiement
 <div class="container p-2">
     <h2>Paiement</h2>
-    @foreach (var item in Model.Vol)
+    @foreach (var item in (List<VolDetails>)ViewData["Vol"]!)
     {
         <div class="bg-white border my-2 p-3">
             <div class="row justify-content-between d-flex mb-2">
@@ -35,7 +35,7 @@
                             <th>Premiere classe</th>
                         </tr>
                     </thead>
-                @foreach (var item in Model.Reservations)
+                @foreach (var item in (List<ReservationDetails>)ViewData["Reservations"]!)
                 {
                     <tr>
                         <td>@item.Personne</td>
@@ -52,7 +52,7 @@
                         <td>
                             @item.NbPlacePremiere
                             <br />
-                            Total: @Html.DisplayFor(m => item.TotalAffaire, "CurrencyFormatter")
+                            Total: @Html.DisplayFor(m => item.TotalPremiere, "CurrencyFormatter")
                         </td>
                     </tr>
                 }
@@ -61,12 +61,11 @@
 
             <div class="row mb-1">
                 <div class="mx-1 mb-3">
-                <form asp-controller='Reservation' asp-action='SubmitPaiement'>
-                        @Html.HiddenFor(m => Model.ReservationId, Model.ReservationId)
+                <form asp-controller='Reservation' asp-action='SubmitPaiement' asp-route-ID="@ViewData["ReservationId"]">
                         <div class="col mx-1 mb-3">
                             <label for="exampleFormControlInput1" class="form-label">Carte bancaire</label>
-                            <input asp-for="@Model.Paiement.NumeroCarteBancaire" class=" form-control" id="carteBancaire" value="0" />
-                            <span asp-validation-for="@Model.Paiement.NumeroCarteBancaire" class="text-danger"></span>
+                            <input asp-for="@Model.NumeroCarteBancaire" class=" form-control" id="carteBancaire" value="0" />
+                            <span asp-validation-for="@Model.NumeroCarteBancaire" class="text-danger"></span>
                         </div>
                         <div class="row mb-1">
                             <div class="mx-1 mb-3">

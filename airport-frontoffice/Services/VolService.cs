@@ -41,11 +41,17 @@ namespace airport_frontoffice.Services
                             vol.PrixDeBaseEconomique = (decimal)reader["prix_de_base_economique"];
                             vol.PrixDeBaseAffaire = (decimal)reader["prix_de_base_affaire"];
                             vol.PrixDeBasePremiere = (decimal)reader["prix_de_base_premiere"];
+                            vol.NbPlaceEconomiqueReserve = (int)reader["nb_place_economique_reserve"];
+                            vol.NbPlaceAffaireReserve = (int)reader["nb_place_affaire_reserve"];
+                            vol.NbPlacePremiereReserve = (int)reader["nb_place_premiere_reserve"];
 
                             Avion avion = new Avion();
                             avion.Marque = reader["marque"].ToString();
                             avion.Modele = reader["modele"].ToString();
                             avion.Immatriculation = reader["immatriculation"].ToString();
+                            avion.NbPlaceEconomique = (int)reader["nb_place_economique"];
+                            avion.NbPlaceAffaire = (int)reader["nb_place_affaire"];
+                            avion.NbPlacePremiere = (int)reader["nb_place_premiere"];
                             vol.Avion = avion;
 
                             Airport airport = new Airport();
@@ -103,11 +109,17 @@ namespace airport_frontoffice.Services
                             vol.PrixDeBaseEconomique = (decimal)reader["prix_de_base_economique"];
                             vol.PrixDeBaseAffaire = (decimal)reader["prix_de_base_affaire"];
                             vol.PrixDeBasePremiere = (decimal)reader["prix_de_base_premiere"];
+                            vol.NbPlaceEconomiqueReserve = (int)reader["nb_place_economique_reserve"];
+                            vol.NbPlaceAffaireReserve = (int)reader["nb_place_affaire_reserve"];
+                            vol.NbPlacePremiereReserve = (int)reader["nb_place_premiere_reserve"];
 
                             Avion avion = new Avion();
                             avion.Marque = reader["marque"].ToString();
                             avion.Modele = reader["modele"].ToString();
                             avion.Immatriculation = reader["immatriculation"].ToString();
+                            avion.NbPlaceEconomique = (int)reader["nb_place_economique"];
+                            avion.NbPlaceAffaire = (int)reader["nb_place_affaire"];
+                            avion.NbPlacePremiere = (int)reader["nb_place_premiere"];
                             vol.Avion = avion;
 
                             Airport airport = new Airport();

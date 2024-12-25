@@ -25,8 +25,8 @@ namespace airport_frontoffice.Services
                     using (var command = new SqlCommand(null, connection))
                     {
                         command.CommandText =
-                            "INSERT INTO Paiement (reservation_id, numero_carte_bancaire) VALUES " +
-                            "(@reservation_id, @numero_carte_bancaire)  ";
+                            "INSERT INTO Paiement (reservation_id, numero_carte_bancaire, date_paiement) VALUES " +
+                            "(@reservation_id, @numero_carte_bancaire, CURRENT_TIMESTAMP)  ";
 
                         command.Parameters.Add("@reservation_id", SqlDbType.Int).Value = paiement.ReservationId;
                         command.Parameters.Add("@numero_carte_bancaire", SqlDbType.VarChar, 12).Value = paiement.NumeroCarteBancaire;

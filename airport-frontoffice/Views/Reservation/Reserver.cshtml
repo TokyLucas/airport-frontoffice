@@ -22,17 +22,17 @@
             </div>
             <div class="row overflow-auto">
                 <div class="col m-2 border rounded">
-                    <span class="fw-bold">Classe économique:</span> XX restants
+                    <span class="fw-bold">Classe économique:</span> @(item.Avion.NbPlaceEconomique - item.NbPlaceEconomiqueReserve) restants
                     <br />
                     <span class="fw-bold">Tarif:   @Html.DisplayFor(m => item.PrixDeBaseEconomique, "CurrencyFormatter")</span>
                 </div>
                 <div class="col m-2 border rounded">
-                    <span class="fw-bold">Classe affaire:</span> XX restants
+                    <span class="fw-bold">Classe affaire:</span> @(item.Avion.NbPlaceAffaire-item.NbPlaceAffaireReserve) restants
                     <br />
                     <span class="fw-bold">Tarif:   @Html.DisplayFor(m => item.PrixDeBaseAffaire, "CurrencyFormatter")</span>
                 </div>
                 <div class="col m-2 border rounded">
-                    <span class="fw-bold">Classe première:</span> XX restants
+                    <span class="fw-bold">Classe première:</span> @(item.Avion.NbPlacePremiere - item.NbPlacePremiereReserve) restants
                     <br />
                     <span class="fw-bold">Tarif:   @Html.DisplayFor(m => item.PrixDeBasePremiere, "CurrencyFormatter")</span>
                 </div>
@@ -42,7 +42,12 @@
     <div class="bg-white border my-2 p-3">
         <form asp-controller='Reservation' asp-action='SubmitReservation'>
             @Html.HiddenFor(m => Model.VolId, Model.VolId)
-            @ViewData["Message"]
+            @if (ViewData["message"] != null)
+            {
+                <div class="alert alert-warning">
+                    @ViewData["message"]
+                </div>
+            }
 
             <div class="row col mb-1">
                 <div class="col mx-1 mb-3">
@@ -61,7 +66,7 @@
                 </div>
                 <div class="col mx-1 mb-3">
                     <label for="exampleFormControlInput1" class="form-label">1ere classe</label>
-                    <input asp-for="@Model.PlacesAdulte.NbPlaceAffaire" class=" form-control" id="placePremAdulte" value="0" type="number" />
+                    <input asp-for="@Model.PlacesAdulte.NbPlacePremiere" class=" form-control" id="placePremAdulte" value="0" type="number" />
                     <span asp-validation-for="@Model.PlacesAdulte.NbPlacePremiere" class="text-danger"></span>
                 </div>
             </div>
@@ -82,7 +87,7 @@
                 </div>
                 <div class="col mx-1 mb-3">
                     <label for="exampleFormControlInput1" class="form-label">1ere classe</label>
-                    <input asp-for="@Model.PlacesEnfant.NbPlaceAffaire" class=" form-control" id="placePremAdulte" value="0" type="number" />
+                    <input asp-for="@Model.PlacesEnfant.NbPlacePremiere" class=" form-control" id="placePremAdulte" value="0" type="number" />
                     <span asp-validation-for="@Model.PlacesEnfant.NbPlacePremiere" class="text-danger"></span>
                 </div>
             </div>
@@ -103,7 +108,7 @@
                 </div>
                 <div class="col mx-1 mb-3">
                     <label for="exampleFormControlInput1" class="form-label">1ere classe</label>
-                    <input asp-for="@Model.PlacesBebe.NbPlaceAffaire" class=" form-control" id="placePremAdulte" value="0" type="number" />
+                    <input asp-for="@Model.PlacesBebe.NbPlacePremiere" class=" form-control" id="placePremAdulte" value="0" type="number" />
                     <span asp-validation-for="@Model.PlacesBebe.NbPlacePremiere" class="text-danger"></span>
                 </div>
             </div>

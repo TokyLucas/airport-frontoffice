@@ -36,17 +36,14 @@
                         <li class="nav-item">
                             <a class="nav-link text-dark" asp-area="" asp-controller="Home" asp-action="Index">Home</a>
                         </li>
-                        <li class="nav-item">
-                            <a class="nav-link text-dark" asp-area="" asp-controller="Home" asp-action="Privacy">Privacy</a>
-                        </li>
                     </ul>
-                    <ul class="navbar-nav">
+                    <ul class="navbar-nav me-5">
                         @if(client != null){
                             <li class="nav-item dropdown">
                                 <a class="nav-link dropdown-toggle" id="navbarScrollingDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
                                     @client.Nom @client.Prenom
                                 </a>
-                                <ul class="dropdown-menu" aria-labelledby="navbarScrollingDropdown">
+                                <ul class="dropdown-menu p-1" aria-labelledby="navbarScrollingDropdown">
                                     <li>
                                         <a class="nav-link text-dark" asp-area="" asp-controller="Reservation" asp-action="Liste">Reservation</a>
                                     </li>

@@ -39,17 +39,17 @@
                         </div>
                         <div class="row overflow-auto">
                             <div class="col m-2 border rounded">
-                                <span class="fw-bold">Classe économique:</span> XX restants
+                                <span class="fw-bold">Classe économique:</span> @(item.Avion.NbPlaceEconomique-item.NbPlaceEconomiqueReserve) restants
                                 <br />
                                 <span class="fw-bold">Tarif:   @Html.DisplayFor(m => item.PrixDeBaseEconomique, "CurrencyFormatter")</span>
                             </div>
                             <div class="col m-2 border rounded">
-                                <span class="fw-bold">Classe affaire:</span> XX restants
+                                <span class="fw-bold">Classe affaire:</span> @(item.Avion.NbPlaceAffaire-item.NbPlaceAffaireReserve) restants
                                 <br />
                                 <span class="fw-bold">Tarif:   @Html.DisplayFor(m => item.PrixDeBaseAffaire, "CurrencyFormatter")</span>
                             </div>
                             <div class="col m-2 border rounded">
-                                <span class="fw-bold">Classe première:</span> XX restants
+                                <span class="fw-bold">Classe première:</span> @(item.Avion.NbPlacePremiere-item.NbPlacePremiereReserve) restants
                                 <br />
                                 <span class="fw-bold">Tarif:   @Html.DisplayFor(m => item.PrixDeBasePremiere, "CurrencyFormatter")</span>
                             </div>

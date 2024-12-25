@@ -6,6 +6,7 @@ namespace airport_frontoffice.Models
     {
 
         [Required(ErrorMessage = "Email requis.")]
+        [EmailAddress(ErrorMessage = "Invalid Email Address")]
         public string Email { get; set; }
 
         [Required(ErrorMessage = "Mot de passe requis.")]
